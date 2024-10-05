@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
-from .models import Task
+from .models import Task, Note
 
 # Create your views here.
 class CustomLoginView(LoginView):
@@ -19,7 +19,8 @@ class CustomLoginView(LoginView):
 
     def get_success_url(self):
         return reverse_lazy('tasks')
-    
+        
+
 class RegisterPage(FormView):
     template_name = 'base/register.html'
     form_class = UserCreationForm
@@ -58,6 +59,21 @@ class TaskDetail(LoginRequiredMixin, DetailView):
     model = Task
     context_object_name = 'task'
     template_name = 'base/task.html'
+
+class NotesList(LoginRequiredMixin, ListView):
+    model = Note
+    context_object_name = 'notes'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['notes'] =  context['notes'].filter(user=self.request.user)
+
+        search_input = self.request.GET.get('search-area') or ''
+        if search_input:
+            context['notes'] = context['notes'].filter(title__icontains = search_input)
+
+        context['search_input'] = search_input
+        return context
 
 class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
