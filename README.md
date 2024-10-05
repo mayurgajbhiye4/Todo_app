@@ -1,1 +1,1 @@
-# todo_app
+# Todo list / Notes App
