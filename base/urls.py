@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import TaskList, TaskDetail, TaskCreate, TaskUpdate, TaskDelete, CustomLoginView, RegisterPage, NotesList
+from .views import TaskList, TaskCreate, TaskUpdate, TaskDelete, CustomLoginView, RegisterPage, NotesList, NoteCreate, NoteUpdate, NoteDelete
 from django.contrib.auth.views import LogoutView
 
 
@@ -8,10 +8,13 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(next_page='login'), name = "logout"),
     path('register/', RegisterPage.as_view(), name = "register"),
     
-    path('', TaskList.as_view(), name = 'tasks'),   
-    path('notes/', NotesList.as_view(), name = 'notes'),   
-    path('task/<int:pk>/', TaskDetail.as_view(), name = 'task'),
+    path('', TaskList.as_view(), name = 'tasks'),      
     path('task-create/', TaskCreate.as_view(), name = 'task-create'),
     path('task-update/<int:pk>', TaskUpdate.as_view(), name = 'task-update'),
-    path('task-delete/<int:pk>', TaskDelete.as_view(), name = 'task-delete')
+    path('task-delete/<int:pk>', TaskDelete.as_view(), name = 'task-delete'),
+
+    path('notes/', NotesList.as_view(), name = 'notes'),
+    path('note-create/', NoteCreate.as_view(), name = 'note-create'),
+    path('note-update/<int:pk>', NoteUpdate.as_view(), name = 'note-update'),
+    path('note-delete/<int:pk>', NoteDelete.as_view(), name = 'note-delete'),
 ]   

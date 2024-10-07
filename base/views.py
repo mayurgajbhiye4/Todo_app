@@ -55,10 +55,27 @@ class TaskList(LoginRequiredMixin, ListView):
         context['search_input'] = search_input
         return context
     
-class TaskDetail(LoginRequiredMixin, DetailView):
+
+class TaskCreate(LoginRequiredMixin, CreateView):
+    model = Task
+    fields = ['title', 'complete']
+    success_url = reverse_lazy('tasks')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(TaskCreate, self).form_valid(form)
+
+
+class TaskUpdate(LoginRequiredMixin, UpdateView):
+    model = Task
+    fields = ['title', 'complete']
+    success_url = reverse_lazy('tasks')
+
+class TaskDelete(LoginRequiredMixin, DeleteView):
     model = Task
     context_object_name = 'task'
-    template_name = 'base/task.html'
+    success_url = reverse_lazy('tasks')
+
 
 class NotesList(LoginRequiredMixin, ListView):
     model = Note
@@ -74,23 +91,22 @@ class NotesList(LoginRequiredMixin, ListView):
 
         context['search_input'] = search_input
         return context
-
-class TaskCreate(LoginRequiredMixin, CreateView):
-    model = Task
-    fields = ['title', 'description', 'complete']
-    success_url = reverse_lazy('tasks')
+    
+class NoteCreate(LoginRequiredMixin, CreateView):
+    model = Note
+    fields = ['title', 'description']
+    success_url = reverse_lazy('notes')
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        return super(TaskCreate, self).form_valid(form)
+        return super(NoteCreate, self).form_valid(form)
+    
+class NoteUpdate(LoginRequiredMixin, UpdateView):
+    model = Note
+    fields = ['title', 'description']
+    success_url = reverse_lazy('notes')
 
-
-class TaskUpdate(LoginRequiredMixin, UpdateView):
-    model = Task
-    fields = ['title', 'description', 'complete']
-    success_url = reverse_lazy('tasks')
-
-class TaskDelete(LoginRequiredMixin, DeleteView):
-    model = Task
-    context_object_name = 'task'
-    success_url = reverse_lazy('tasks')
+class NoteDelete(LoginRequiredMixin, DeleteView):
+    model = Note
+    context_object_name = 'note'
+    success_url = reverse_lazy('notes')

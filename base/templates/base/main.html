@@ -32,12 +32,15 @@
             justify-content: space-between;
             color: white;
             padding: 10px;
-            background: linear-gradient(90deg, hsl(311, 72%, 55%), hsl(278, 69%, 32%),hsl(270, 94%, 43%) 100%)
+            background: linear-gradient(90deg, hsl(26, 79%, 42%), hsl(41, 49%, 66%),hsl(17, 88%, 61%) 100%)
         }
 
         .header-bar a{
-            color: white;
+            color: hsl(0, 50%, 99%);
             text-decoration: none;
+        }
+        .header-bar a:hover{
+            color: hsl(0, 0%, 4%);
         }
 
         .task-wrapper{
@@ -55,8 +58,26 @@
 
         .task-title a{
             text-decoration: none;
-            color: hsl(0, 0%, 50%);
+            color: hsl(0, 0%, 0%);
             margin-left: 10px;
+        }
+
+        .note-wrapper{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: hsl(0, 0%, 100%);
+            border-top: 1px solid hsl(0, 7%, 94%);
+        }
+
+        .note-title{
+            display: inline-block;  
+        }
+
+        .note-title a,p{
+            text-decoration: none;
+            color: hsl(0, 0%, 0%);
         }
 
         .task-complete-icon{
@@ -98,16 +119,16 @@
         input[type=text],
         input[type=password],
         textarea{
-            border: 1px solid hsl(281, 90%, 33%);
+            border: 1px solid hsl(27, 90%, 45%);
             border-radius: 5px;
             padding: 10px;
             width: 90%;
         }
 
         .button{
-            border: 1px solid hsl(276, 88%, 32%); 
+            border: 1px solid hsl(31, 91%, 46%); 
             background-color: rgb(255, 255, 255);
-            color: hsl(284, 88%, 20%);
+            color: hsl(29, 90%, 48%);
             padding: 10px;
             font-size: 14px;
             border-radius: 5px;

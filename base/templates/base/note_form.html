@@ -11,20 +11,20 @@
 <body>
 
     <div class="header-bar">
-        <a href="{% url 'tasks' %}">&#8592; Back</a>
+        <a href="{% url 'notes' %}">&#8592; Back</a>
     </div>
 
     <div class="card-body">
         <form method="POST" action = "">
             {% csrf_token %}
             {{form.media}}
-            <label>Task</label>
+            <label>Title</label>
             <br>
-            {{ form.title }}
+            {{ form.title }} 
             <br><br>
-            <label>Complete</label>
-            {{ form.complete }}
-            <br><br>
+            <label>Description</label>
+            {{ form.description|safe }}
+            <br>
             <input class="button" type ="submit" value="Submit">
         </form>
     </div>
